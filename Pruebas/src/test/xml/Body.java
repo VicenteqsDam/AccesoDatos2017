@@ -3,10 +3,15 @@ package test.xml;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Body implements Serializable {
-	
+
 	private static final long serialVersionUID = 1208387430614040278L;
 	private ArrayList<Div> divs;
+	@XmlMixed
 	private String value;
 
 	public Body() {

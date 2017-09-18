@@ -4,3 +4,7 @@ RemoteSystemsTempFiles/
 Pruebas/.settings/
 Pruebas/.project
 Pruebas/.classpath
+
+\.recommenders/
+
+Pruebas\.zip
