@@ -36,17 +36,18 @@
 
 		<div class="starter-template">
 			<h1>Listado de alumnos de clase</h1>
+			<a class="pull-right" href="/alumn/new">Nuevo alumno</a>
 			<table class="table">
 				<tr>
 					<th>Nombre</th>
 					<th>Apellidos</th>
 					<th>Detalle</th>
 				</tr>
-				<tr data-th-each="user : ${users}">
-					<td data-th-text="${user.name}"></td>
-					<td data-th-text="${user.surname}"></td>
+				<tr data-th-each="alumn : ${alumns}">
+					<td data-th-text="${alumn.name}"></td>
+					<td data-th-text="${alumn.surname}"></td>
 					<td><a class="btn btn-default"
-						th:href="@{/user/detail/{id}(id=${user.id})}"><i
+						th:href="@{/alumn/detail/{id}(id=${alumn.id})}"><i
 							class="glyphicon glyphicon-search"></i></a></td>
 
 				</tr>
