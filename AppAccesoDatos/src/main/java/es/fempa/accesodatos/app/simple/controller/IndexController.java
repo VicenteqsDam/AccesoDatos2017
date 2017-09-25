@@ -13,19 +13,24 @@ import es.fempa.accesodatos.app.simple.service.GeneralService;
 
 @Controller
 public class IndexController {
-	
+
 	@Autowired
 	GeneralService serv;
 
 	@RequestMapping("/")
-	public String userList(Map<String, Object> model) {
+	public String alumnList(Map<String, Object> model) {
 		ArrayList<Properties> list = this.serv.createDemoList();
-		model.put("users", list);
+		model.put("alumns", list);
 		return "index";
 	}
 
-	@RequestMapping("/user/detail/{id}")
-	public String userDetail(Map<String, Object> model, @PathVariable Long id) {
+	@RequestMapping("/alumn/detail/{id}")
+	public String alumnDetail(Map<String, Object> model, @PathVariable Long id) {
 		return "detail";
+	}
+
+	@RequestMapping("/alumn/new")
+	public String alumnNew() {
+		return "new";
 	}
 }
