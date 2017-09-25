@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Aplicación base Acceso a datos</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+<script src="webjars/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+<script type="text/javascript"
+	src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Control de alumnos</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Listado de alumnos</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="starter-template">
+			<h1>Listado de alumnos de clase</h1>
+			<table class="table">
+				<tr>
+					<th>Nombre</th>
+					<th>Apellidos</th>
+					<th>Detalle</th>
+				</tr>
+				<tr data-th-each="user : ${users}">
+					<td data-th-text="${user.name}"></td>
+					<td data-th-text="${user.surname}"></td>
+					<td><a class="btn btn-default"
+						th:href="@{/user/detail/{id}(id=${user.id})}"><i
+							class="glyphicon glyphicon-search"></i></a></td>
+
+				</tr>
+			</table>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+
+
+</body>
+</html>

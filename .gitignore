@@ -1,0 +1,14 @@
+Pruebas/bin/
+.metadata/
+RemoteSystemsTempFiles/
+Pruebas/.settings/
+Pruebas/.project
+Pruebas/.classpath
+
+\.recommenders/
+
+Pruebas\.zip
+
+AppAccesoDatos/\.settings/
+
+AppAccesoDatos/bin/
