@@ -16,6 +16,9 @@
 
 package es.fempa.accesodatos.app.simple.service;
 
+import java.util.ArrayList;
+import java.util.Properties;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +26,16 @@ public class GeneralService {
 
 	public String getHelloMessage() {
 		return "Hello ";
+	}
+
+	public ArrayList<Properties> createDemoList() {
+		ArrayList<Properties> list = new ArrayList<Properties>();
+		Properties p = new Properties();
+		p.put("name", "Vicente");
+		p.put("surname", "Quiles");
+		p.put("id", new Long(1));
+		list.add(p);
+		return list;
 	}
 
 }

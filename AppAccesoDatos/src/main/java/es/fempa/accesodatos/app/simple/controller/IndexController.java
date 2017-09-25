@@ -4,25 +4,28 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import es.fempa.accesodatos.app.simple.service.GeneralService;
 
 @Controller
 public class IndexController {
-	// inject via application.properties
-	@Value("${welcome.message:test}")
-	private String message = "Hello World";
+	
+	@Autowired
+	GeneralService serv;
 
 	@RequestMapping("/")
-	public String welcome(Map<String, Object> model) {
-		model.put("message", this.message);
-		ArrayList<Properties> list = new ArrayList<Properties>();
-		Properties p = new Properties();
-		p.put("name", "Vicente");
-		p.put("surname", "Quiles");
-		list.add(p);
+	public String userList(Map<String, Object> model) {
+		ArrayList<Properties> list = this.serv.createDemoList();
 		model.put("users", list);
 		return "index";
+	}
+
+	@RequestMapping("/user/detail/{id}")
+	public String userDetail(Map<String, Object> model, @PathVariable Long id) {
+		return "detail";
 	}
 }
