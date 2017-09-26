@@ -6,9 +6,12 @@ import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.fempa.accesodatos.app.simple.model.entity.Alumno;
 import es.fempa.accesodatos.app.simple.service.GeneralService;
 
 @Controller
@@ -30,7 +33,14 @@ public class IndexController {
 	}
 
 	@RequestMapping("/alumn/new")
-	public String alumnNew() {
+	public String newAlumn(Map<String, Object> model) {		
+		model.put("alumn", new Alumno());
 		return "new";
+	}
+
+	@PostMapping("/alumn/processNewAlumn")
+	public String processNewAlumn(@ModelAttribute Alumno alumn) {
+		System.out.println(alumn.getName());
+		return "redirect:/";
 	}
 }
