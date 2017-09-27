@@ -1,8 +1,11 @@
 package es.fempa.accesodatos.app.simple.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.xml.sax.SAXException;
 
 import es.fempa.accesodatos.app.simple.model.entity.Alumno;
 import es.fempa.accesodatos.app.simple.service.GeneralService;
@@ -21,7 +25,7 @@ public class IndexController {
 	GeneralService serv;
 
 	@RequestMapping("/")
-	public String alumnList(Map<String, Object> model) {
+	public String alumnList(Map<String, Object> model) throws ParserConfigurationException, SAXException, IOException {
 		ArrayList<Properties> list = this.serv.createDemoList();
 		model.put("alumns", list);
 		return "index";
