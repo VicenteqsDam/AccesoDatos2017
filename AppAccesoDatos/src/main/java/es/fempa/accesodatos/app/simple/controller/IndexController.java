@@ -32,7 +32,9 @@ public class IndexController {
 	}
 
 	@RequestMapping("/alumn/detail/{id}")
-	public String alumnDetail(Map<String, Object> model, @PathVariable Long id) {
+	public String alumnDetail(Map<String, Object> model, @PathVariable Long id) throws ParserConfigurationException, SAXException, IOException {
+		Properties elemento = this.serv.createAlumnDetail(id);
+		model.put("alumn", elemento);
 		return "detail";
 	}
 

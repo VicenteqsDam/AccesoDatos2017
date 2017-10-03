@@ -88,4 +88,37 @@ public class GeneralService {
 		return list;
 	}
 
+	public Properties createAlumnDetail(Long id) throws ParserConfigurationException, SAXException, IOException {
+		Properties elemento = new Properties();
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setIgnoringComments(true);
+		factory.setIgnoringElementContentWhitespace(true);
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		File fichero = new File("C:/Users/Antonio/Desktop/DAM/CURSO 2º/ACCESO A DATOS/CarpetaKraken/AccesoDatos2017/AppAccesoDatos/src/main/resources/files/alumnos.xml");
+		Document doc = builder.parse(fichero);
+		Node raiz = doc.getFirstChild();
+		NodeList hijos = raiz.getChildNodes();
+		for(int i=0; i<hijos.getLength();i++)
+		{
+			if(hijos.item(i).getNodeName().equals("ROW"))
+			{
+				NodeList nietos = hijos.item(i).getChildNodes();
+				for(int j=0; j<nietos.getLength();j++)
+				{						
+					if(nietos.item(j).getNodeName().equals("id")
+							&& nietos.item(j).getFirstChild().getNodeValue().equals(id.toString()))
+					{
+						elemento.put("id", nietos.item(j).getFirstChild().getNodeValue());						
+						elemento.put("name", nietos.item(j+2).getFirstChild().getNodeValue());						
+						elemento.put("surname", nietos.item(j+4).getFirstChild().getNodeValue());
+						elemento.put("mail", nietos.item(j+6).getFirstChild().getNodeValue());
+						elemento.put("phone", nietos.item(j+8).getFirstChild().getNodeValue());
+						elemento.put("birthday", nietos.item(j+10).getFirstChild().getNodeValue());
+					}
+				}
+			}
+		}
+		return elemento;
+	}	
+	
 }
