@@ -22,21 +22,21 @@ public class IndexController {
 
     @RequestMapping("/")
     public String alumnListDom(Map<String, Object> model) {
-        ArrayList<Properties> list = this.serv.createDemoList();
+        ArrayList<Properties> list = this.serv.createDemoListDom();
         model.put("alumns", list);
         return "index";
     }
 
     @RequestMapping("/indexSax")
     public String alumnListSax(Map<String, Object> model) {
-        ArrayList<Properties> list = this.serv.createDemoList();
+        ArrayList<Properties> list = this.serv.createDemoListSax();
         model.put("alumns", list);
         return "index";
     }
 
     @RequestMapping("/indexJaxb")
     public String alumnListJaxb(Map<String, Object> model) {
-        ArrayList<Properties> list = this.serv.createDemoList();
+        ArrayList<Alumno> list = this.serv.createDemoListJaxb();
         model.put("alumns", list);
         return "index";
     }
@@ -55,8 +55,8 @@ public class IndexController {
     }
 
     @PostMapping("/alumn/processNewAlumn")
-    public String processNewAlumn(@ModelAttribute Alumno alumn) {
-        System.out.println(alumn.getName());
+    public String processNewAlumn(@ModelAttribute Alumno alumno) {
+        this.serv.createAlumn(alumno);
         return "redirect:/";
     }
 }
