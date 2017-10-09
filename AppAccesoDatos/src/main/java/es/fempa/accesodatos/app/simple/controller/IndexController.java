@@ -29,6 +29,8 @@ public class IndexController {
 
 	@RequestMapping("/alumn/detail/{id}")
 	public String alumnDetail(Map<String, Object> model, @PathVariable Long id) {
+		Properties p = this.serv.getDataAlumn(id);
+		model.put("alumno", p);
 		return "detail";
 	}
 

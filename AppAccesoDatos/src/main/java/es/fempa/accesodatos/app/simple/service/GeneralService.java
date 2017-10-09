@@ -38,4 +38,9 @@ public class GeneralService {
 		return list;
 	}
 
+	public Properties getDataAlumn(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
