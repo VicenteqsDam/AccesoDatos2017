@@ -17,32 +17,46 @@ import es.fempa.accesodatos.app.simple.service.GeneralService;
 @Controller
 public class IndexController {
 
-	@Autowired
-	GeneralService serv;
+    @Autowired
+    GeneralService serv;
 
-	@RequestMapping("/")
-	public String alumnList(Map<String, Object> model) {
-		ArrayList<Properties> list = this.serv.createDemoList();
-		model.put("alumns", list);
-		return "index";
-	}
+    @RequestMapping("/")
+    public String alumnListDom(Map<String, Object> model) {
+        ArrayList<Properties> list = this.serv.createDemoList();
+        model.put("alumns", list);
+        return "index";
+    }
 
-	@RequestMapping("/alumn/detail/{id}")
-	public String alumnDetail(Map<String, Object> model, @PathVariable Long id) {
-		Properties p = this.serv.getDataAlumn(id);
-		model.put("alumno", p);
-		return "detail";
-	}
+    @RequestMapping("/indexSax")
+    public String alumnListSax(Map<String, Object> model) {
+        ArrayList<Properties> list = this.serv.createDemoList();
+        model.put("alumns", list);
+        return "index";
+    }
 
-	@RequestMapping("/alumn/new")
-	public String newAlumn(Map<String, Object> model) {		
-		model.put("alumn", new Alumno());
-		return "new";
-	}
+    @RequestMapping("/indexJaxb")
+    public String alumnListJaxb(Map<String, Object> model) {
+        ArrayList<Properties> list = this.serv.createDemoList();
+        model.put("alumns", list);
+        return "index";
+    }
 
-	@PostMapping("/alumn/processNewAlumn")
-	public String processNewAlumn(@ModelAttribute Alumno alumn) {
-		System.out.println(alumn.getName());
-		return "redirect:/";
-	}
+    @RequestMapping("/alumn/detail/{id}")
+    public String alumnDetail(Map<String, Object> model, @PathVariable Long id) {
+        Properties p = this.serv.getDataAlumn(id);
+        model.put("alumno", p);
+        return "detail";
+    }
+
+    @RequestMapping("/alumn/new")
+    public String newAlumn(Map<String, Object> model) {
+        model.put("alumn", new Alumno());
+        return "new";
+    }
+
+    @PostMapping("/alumn/processNewAlumn")
+    public String processNewAlumn(@ModelAttribute Alumno alumn) {
+        System.out.println(alumn.getName());
+        return "redirect:/";
+    }
 }
