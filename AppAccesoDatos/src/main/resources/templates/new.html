@@ -40,8 +40,17 @@
 				th:action="@{/alumn/processNewAlumn}" th:object="${alumn}"
 				method="post">
 				<div class="form-group">
-					<label for="name">Nombre</label> <input type="text"
-						class="form-control" th:field="*{name}"></input>
+					<label for="name">Nombre</label> 
+						<input type="text" class="form-control" th:field="*{name}"></input> 
+					<label for="surname">Apellidos</label>
+						<input type="text" class="form-control" th:field="*{surname}"></input>
+					<label for="name">Teléfono</label> <input type="text"
+						class="form-control" th:field="*{phone}"></input> <label
+						for="name">Email</label> <input type="text" class="form-control"
+						th:field="*{email}"></input> <label for="name">Fecha Nacimiento</label> <input
+						type="text" class="form-control" th:field="*{birthdate}"></input>
+
+
 				</div>
 				<button type="submit" class="pull-right btn btn-primary">Crear
 					alumno</button>

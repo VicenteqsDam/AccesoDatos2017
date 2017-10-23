@@ -18,7 +18,7 @@ import es.fempa.accesodatos.app.simple.model.pojo.FilterForm;
 @Service
 public class GeneralService {
 
-	public Properties getDataAlumn(Long id) {
+    public Properties getDataAlumn(Long id) {
         Properties p = new Properties();
         p.put("name", "Vicente");
         p.put("surname", "Quiles");
@@ -26,10 +26,10 @@ public class GeneralService {
         p.put("email", "email@mail.com");
         p.put("phone", 232323);
         p.put("birthdate", "01-01-2017");
-		return p;
-	}
+        return p;
+    }
 
-	public ArrayList<Properties> createDemoListDom() {
+    public ArrayList<Properties> createDemoListDom() {
         ArrayList<Properties> list = new ArrayList<Properties>();
         Properties p = new Properties();
         p.put("name", "Vicente");
@@ -37,16 +37,16 @@ public class GeneralService {
         p.put("id", new Long(1));
         list.add(p);
         return list;
-	}
+    }
 
-	public void createAlumn(Alumno alumno) throws JAXBException {
-        File file = new File("alumnos.xml");
-        JAXBContext contexto = JAXBContext.newInstance(Personas.class);
-        Unmarshaller u = contexto.createUnmarshaller();
-        Personas xmlCompleto = (Personas) u.unmarshal(file);
-        Persona per = new Persona();
-        per.setId("1");
-	}
+    public void createAlumn(Alumno alumno) throws JAXBException {
+        System.out.println(alumno.getName());
+        System.out.println(alumno.getSurname());
+        System.out.println(alumno.getBirthdate());
+        System.out.println(alumno.getEmail());
+        System.out.println(alumno.getPhone());
+        System.out.println(alumno.getId());
+    }
 
     public ArrayList<Properties> createDemoListFiltered(FilterForm filter) {
         ArrayList<Properties> list = new ArrayList<Properties>();
