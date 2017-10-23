@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.xml.bind.JAXBException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.fempa.accesodatos.app.simple.model.entity.Alumno;
+import es.fempa.accesodatos.app.simple.model.pojo.FilterForm;
 import es.fempa.accesodatos.app.simple.service.GeneralService;
 
 @Controller
@@ -24,20 +27,7 @@ public class IndexController {
     public String alumnListDom(Map<String, Object> model) {
         ArrayList<Properties> list = this.serv.createDemoListDom();
         model.put("alumns", list);
-        return "index";
-    }
-
-    @RequestMapping("/indexSax")
-    public String alumnListSax(Map<String, Object> model) {
-        ArrayList<Properties> list = this.serv.createDemoListSax();
-        model.put("alumns", list);
-        return "index";
-    }
-
-    @RequestMapping("/indexJaxb")
-    public String alumnListJaxb(Map<String, Object> model) {
-        ArrayList<Alumno> list = this.serv.createDemoListJaxb();
-        model.put("alumns", list);
+        model.put("filter", new FilterForm());
         return "index";
     }
 
@@ -48,6 +38,14 @@ public class IndexController {
         return "detail";
     }
 
+    @PostMapping("/filterAlumn")
+    public String filterAlumn(Map<String, Object> model, @ModelAttribute FilterForm filter) {
+        ArrayList<Properties> list = this.serv.createDemoListFiltered(filter);
+        model.put("alumns", list);
+        model.put("filter", new FilterForm());
+        return "index";
+    }
+
     @RequestMapping("/alumn/new")
     public String newAlumn(Map<String, Object> model) {
         model.put("alumn", new Alumno());
@@ -55,7 +53,7 @@ public class IndexController {
     }
 
     @PostMapping("/alumn/processNewAlumn")
-    public String processNewAlumn(@ModelAttribute Alumno alumno) {
+    public String processNewAlumn(@ModelAttribute Alumno alumno) throws JAXBException {
         this.serv.createAlumn(alumno);
         return "redirect:/";
     }

@@ -7,7 +7,9 @@ public class Alumno {
 		return this.name;
 	}
 
-	public void setName(String _name) {
-		this.name = _name;
+	public void setSurname(String _surname) {
+		this.name = _surname;
 	}
+	
+	
 }

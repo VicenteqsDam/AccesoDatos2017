@@ -26,9 +26,8 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a th:href="@{/}">Listado de alumnos (DOM)</a></li>
-					<li class="active"><a th:href="@{/indexSax}">Listado de alumnos (SAX)</a></li>
-					<li class="active"><a th:href="@{/indexJaxb}">Listado de alumnos (JAXB)</a></li>
+					<li class="active"><a th:href="@{/}">Listado de alumnos
+							(JDBC)</a></li>
 				</ul>
 			</div>
 		</div>
@@ -38,8 +37,15 @@
 
 		<div class="starter-template">
 			<h1>Listado de alumnos de clase</h1>
-			<a class="btn btn-primary pull-right" href="/alumn/new" role="button">Nuevo alumno</a>
-			<br />
+			<form action="#" class="pull-left" th:action="@{/filterAlumn}"
+				th:object="${filter}" method="post">
+				<div class="form-group inline">
+					<input type="text" class="form-control" th:field="*{text}"></input>
+					<button type="submit" class="pull-right btn btn-primary">Filtrar</button>
+				</div>
+			</form>
+			<a class="btn btn-primary pull-right" href="/alumn/new" role="button">Nuevo
+				alumno</a> <br />
 			<table class="table">
 				<tr>
 					<th>Nombre</th>
